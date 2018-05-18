@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+    - "node"
+    - "8"
+services:
+- mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: nANPwn6tbsVXfPEl4h8bz4mjVnIhZtrlbuqRheFpfrKnMzInGL023hxJVKT3BMtcsvSuV5cUpOVqijYbPOkKabTMWECS6JPByUnORytDmRaIK+qyPM8VAMmZsyijGV2mNaOE4fvj8zAZIyOF2KE7JslLQ0wwMhZqEImLYp5qnkKaZ/FljT083GHC6SZs7ITYz+JCQssbTOpxzjpRT9AjbvIpP0ndCSbasYw06tRJ4XHETQwerZ9FdhL2eXuu2ER1lkBWoY4Z8IwfMjAhJ76Q/rYSze+lnTxq7dLLrEo53L/dmoKkswAkQLNkPjnF7fEtupYuRDa+RAdA7CHkZ8ZShHrRrtanFRUJjBZZ80tNv56g2gDYMx6EylHkB1QqSJ5fCsUzH42DGJKZ45SZJO1kkT53Kget8n1Un6hFTbgufBCHTWQCANNecIwp7zJA7k0TMNWpeRaFQ5M5EltnIp3GjvBHrkjdInfXQtB8UcVuOHJNracm6Hidgxtea1Pw87iy+m/3iQNUHaTKzQCphVJlOv/5Vnq+VBB/df5bS0aI/FTvpcZdL0715wRd19FgA2Tg4Adn3g1UtUEtTHqZN4RJtml17rkGF2cBprkJx7dhFbPld3XmmVfxIJK85XYE75wPBIItmDLiTuQS9XQWhQ1vOujAqXkkbqdRNGhoxnroFps=
+  app: thawing-dawn-14712
+  on:
+    repo: calebxblackwell/wod-clock-backend
