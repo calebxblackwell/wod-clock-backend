@@ -4,14 +4,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
-
-// Here we use destructuring assignment with renaming so the two variables
-// called router (from ./users and ./auth) have different names
-// For example:
-// const actorSurnames = { james: "Stewart", robert: "De Niro" };
-// const { james: jimmy, robert: bobby } = actorSurnames;
-// console.log(jimmy); // Stewart - the variable name is jimmy, not james
-// console.log(bobby); // De Niro - the variable name is bobby, not robert
+//const User = require('./schema/user');
+//const { router: timeRouter } = require('./time');
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
@@ -40,6 +34,7 @@ passport.use(jwtStrategy);
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
+//app.use('/api/time', timeRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
@@ -53,9 +48,16 @@ app.get('/api/protected', jwtAuth, (req, res) => {
 app.use('*', (req, res) => {
   return res.status(404).json({ message: 'Not Found' });
 });
+//endpoint for stopwatch times.
+app.post('/time', (req,res) => {
+  console.log('app.post return');
+  return User.find()
+  .then(users => res.json(users.map(user => user.serialize())))
+  .catch(err => res.status(500).json({message: 'Internal server error'}))
+})
 
-// Referenced by both runServer and closeServer. closeServer
-// assumes runServer has run and set `server` to a server object
+
+//
 let server;
 
 function runServer() {
