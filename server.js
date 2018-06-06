@@ -50,8 +50,8 @@ app.use('*', (req, res) => {
 });
 //endpoint for stopwatch times.
 app.post('/time', (req,res) => {
-  console.log('app.post return');
   return User.find()
+  console.log("app.post return")
   .then(users => res.json(users.map(user => user.serialize())))
   .catch(err => res.status(500).json({message: 'Internal server error'}))
 })
