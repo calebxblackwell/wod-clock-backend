@@ -39,11 +39,12 @@ const User = mongoose.model('User', UserSchema);
 //Lap schema
 const LapSchema = mongoose.Schema({
   lap: {
-    laps: String
+    laps: []
   }
 })
 LapSchema.methods.serialize = () => {
   return{
+    userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     lap: this.laps || ''
   };
 }
