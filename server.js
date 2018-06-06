@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
 //const User = require('./schema/user');
-//const { router: timeRouter } = require('./time');
+const { router: timeRouter } = require('./users/router');
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
@@ -34,7 +34,7 @@ passport.use(jwtStrategy);
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
-//app.use('/api/time', timeRouter);
+app.use('/api/time/', timeRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
