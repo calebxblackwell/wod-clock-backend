@@ -125,6 +125,7 @@ router.get('/', (req, res) => {
     .catch(err => res.status(500).json({message: 'Internal server error'}));
 });
 router.post('/time', (req, res) => {
+  console.log("app.post return")
   return User.find()
   .then(users => res.json(users.map(user => user.serialize())))
   .catch(err => res.status(500).json({message: 'Internal server error'}))

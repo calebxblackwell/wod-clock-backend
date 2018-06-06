@@ -46,13 +46,12 @@ app.get('/api/protected', jwtAuth, (req, res) => {
   });
 });
 
-app.use('*', (req, res) => {
-  return res.status(404).json({ message: 'Not Found' });
-});
+// app.use('*', (req, res) => {
+//   return res.status(404).json({ message: 'Not Found' });
+// });
 //endpoint for stopwatch times.
 app.post('/time', (req,res) => {
   return User.find()
-  console.log("app.post return")
   .then(users => res.json(users.map(user => user.serialize())))
   .catch(err => res.status(500).json({message: 'Internal server error'}))
 })

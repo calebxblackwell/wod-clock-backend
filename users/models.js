@@ -1,9 +1,9 @@
 'use strict';
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
-
 mongoose.Promise = global.Promise;
 
+//UserSchema
 const UserSchema = mongoose.Schema({
   username: {
     type: String,
@@ -35,5 +35,18 @@ UserSchema.statics.hashPassword = function(password) {
 };
 
 const User = mongoose.model('User', UserSchema);
+//
+//Lap schema
+const LapSchema = mongoose.Schema({
+  lap: {
+    laps: String
+  }
+})
+LapSchema.methods.serialize = () => {
+  return{
+    lap: this.laps || ''
+  };
+}
+const Lap = mongoose.model('Lap', LapSchema);
 
-module.exports = {User};
+module.exports = {User, Lap};
