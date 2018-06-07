@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const {User} = require('./models');
-const {Lap} = require('./models');
+const {lap} = require('./models');
 const router = express.Router();
 const jsonParser = bodyParser.json();
 
@@ -127,9 +127,9 @@ router.get('/', (req, res) => {
 });
 router.post('/time', (req, res) => {
   console.log("app.post return")
-  return Lap.find()
-  console.log(Lap)
-  .then(Lap => res.json(Lap.map(lap => Lap.serialize())))
+  return lap.find()
+  console.log(lap)
+  .then(lap => res.json(lap.map(lap => lap.serialize())))
   .catch(err => res.status(500).json({message: 'Internal server error'}));
 });
 module.exports = {router};

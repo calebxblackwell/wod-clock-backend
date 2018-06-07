@@ -48,6 +48,6 @@ LapSchema.methods.serialize = () => {
     lap: this.laps || ''
   };
 }
-const Lap = mongoose.model('Lap', LapSchema);
+const lap = mongoose.model('lap', LapSchema);
 
-module.exports = {User, Lap};
+module.exports = {User, lap};
