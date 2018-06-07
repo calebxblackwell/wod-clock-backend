@@ -120,7 +120,7 @@ router.post('/register', jsonParser, (req, res) => {
     });
 });
 
-router.get('/', (req, res) => {
+router.get('/login', (req, res) => {
   return User.find()
     .then(users => res.json(users.map(user => user.serialize())))
     .catch(err => res.status(500).json({message: 'Internal server error'}));
