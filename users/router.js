@@ -127,7 +127,7 @@ router.get('/login', (req, res) => {
 });
 router.post('/time', (req, res) => {
   console.log("app.post return")
-  return lap.find()
+  return lap.findById()
   console.log(lap)
   .then(lap => res.json(lap.map(lap => lap.serialize())))
   .catch(err => res.status(500).json({message: 'Internal server error'}));
