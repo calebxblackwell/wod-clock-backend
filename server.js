@@ -5,6 +5,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
+const faker = require('faker');
 //const User = require('./schema/user');
 const { router: timeRouter } = require('./users/router');
 const { router: usersRouter } = require('./users');
@@ -12,10 +13,18 @@ const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
 mongoose.Promise = global.Promise;
 
-const { PORT, DATABASE_URL } = require('./config');
-
+const { DATABASE_URL } = require('./config');
+const PORT = process.env.PORT || 8080;
 const app = express();
-
+const workout = ("Murph. For time: 1 mile run. 100 Pull-ups. 200 Push-ups. 300 Squats. 1 Mile run.")
+app.get('/api/wod', (req, res) => {
+  const data = ({
+    date: faker.date.recent(),
+    user: faker.internet.userName(),
+    workout: workout
+  })
+  res.send(data);
+});
 // Logging
 app.use(morgan('common'));
 
@@ -46,13 +55,13 @@ app.get('/api/protected', jwtAuth, (req, res) => {
   });
 });
 
-// app.use('*', (req, res) => {
-//   return res.status(404).json({ message: 'Not Found' });
-// });
+app.use('*', (req, res) => {
+  return res.status(404).json({ message: 'Not Found' });
+});
 
 
 //endpoint for stopwatch times.
-app.post('/time', (req,res) => {
+app.get('/time', (req,res) => {
   return res.json({
     data: []
   });
@@ -63,7 +72,7 @@ let server;
 
 function runServer() {
   return new Promise((resolve, reject) => {
-    mongoose.connect(DATABASE_URL, { useMongoClient: true }, err => {
+    mongoose.connect(DATABASE_URL, err => {
       if (err) {
         return reject(err);
       }
