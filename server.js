@@ -16,12 +16,12 @@ mongoose.Promise = global.Promise;
 const { DATABASE_URL } = require('./config');
 const PORT = process.env.PORT || 8080;
 const app = express();
-const workout = ("Murph. For time: 1 mile run. 100 Pull-ups. 200 Push-ups. 300 Squats. 1 Mile run.")
+const wod = ("Murph. For time: 1 mile run. 100 Pull-ups. 200 Push-ups. 300 Squats. 1 Mile run.")
 app.get('/api/wod', (req, res) => {
   const data = ({
     date: faker.date.recent(),
     user: faker.internet.userName(),
-    workout: workout
+    wod: wod
   })
   res.send(data);
 });
