@@ -16,6 +16,8 @@ mongoose.Promise = global.Promise;
 const { DATABASE_URL } = require('./config');
 const PORT = process.env.PORT || 8080;
 const app = express();
+//
+//information for workout api
 const wod = ("Murph. For time: 1 mile run. 100 Pull-ups. 200 Push-ups. 300 Squats. 1 Mile run.")
 app.get('/api/wod', (req, res) => {
   const data = ({
@@ -25,6 +27,8 @@ app.get('/api/wod', (req, res) => {
   })
   res.send(data);
 });
+
+
 // Logging
 app.use(morgan('common'));
 
